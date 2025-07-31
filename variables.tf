@@ -23,3 +23,24 @@ variable "az" {
   type = string
   default = "eu-north-1a"
 }
+
+variable "ami_id" {
+  description = "The AMI ID of the machine!"
+  type = string
+  default = "ami-0548d28d4f7ec72c5"
+}
+variable "instance_type" {
+  description = "The instance type of the machine!"
+  type = string
+  default = "t3.micro"
+}
+variable "ami_name" {
+  description = "The name of the AMI instance."
+  default = "AWS_DEBIAN"
+  type = string
+}
+variable "key_name" {
+  description = "The name of the AWS ssh key!"
+  type = string
+  default = "r3ap3rpy"
+}
