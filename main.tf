@@ -57,9 +57,9 @@ description      = ""
      security_groups  = []
      self             = false
      cidr_blocks      = [ "0.0.0.0/0", ]
-     from_port        = 80
+     from_port        = 22
      protocol         = "tcp"
-     to_port          = 80
+     to_port          = 22
   }]
   
   egress = [
@@ -107,4 +107,17 @@ description      = ""
 ]
 }
 resource "aws_eip" "nat_eip" {
+}
+
+resource "aws_instance" "web" {
+  ami                         = var.ami_id                  # e.g., "ami-0c55b159cbfafe1f0"
+  instance_type               = var.instance_type           # e.g., "t2.micro"
+  subnet_id                   = aws_subnet.public_subnet.id
+  vpc_security_group_ids      = [aws_security_group.public_sg.id]
+  associate_public_ip_address = true
+  key_name                    = var.key_name                # Your SSH key name
+
+  tags = {
+    Name = var.ami_name
+  }
 }
